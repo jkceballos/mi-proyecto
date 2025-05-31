@@ -8,25 +8,20 @@ pipeline {
     stages {
         stage('Construir contenedores') {
             steps {
-                sh 'docker compose build'
+                sh 'docker-compose build'
             }
         }
 
         stage('Ejecutar pruebas') {
             steps {
-                sh 'docker compose run --rm web python -m unittest discover tests'
+                sh 'docker-compose run --rm web python -m unittest discover tests'
             }
         }
 
         stage('Desplegar') {
             steps {
-                sh 'docker compose up -d'
+                sh 'docker-compose up -d'
             }
         }
     }
 }
-
-
-
-
-
